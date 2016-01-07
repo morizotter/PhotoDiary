@@ -58,7 +58,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
                 let photoItem = PhotoItem(image: image)
                 ItemsManager.sharedInstance.items.append(photoItem)
                 s.collectionView.reloadData()
-                ItemsManager.sharedInstance.saveItems()
             }
         }
     }
