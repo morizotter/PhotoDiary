@@ -13,7 +13,6 @@
 		9090CCC71C3E8FD50094DAAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9090CCC61C3E8FD50094DAAD /* Assets.xcassets */; };
 		9090CCCA1C3E8FD50094DAAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9090CCC81C3E8FD50094DAAD /* LaunchScreen.storyboard */; };
 		9090CCD21C3E94070094DAAD /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090CCD11C3E94070094DAAD /* PhotoCell.swift */; };
-		9090CCD61C3EB1300094DAAD /* PhotoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090CCD51C3EB12F0094DAAD /* PhotoItem.swift */; };
 		9090CCDB1C3ECFE80094DAAD /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9090CCDA1C3ECFE80094DAAD /* PhotoViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +25,6 @@
 		9090CCC91C3E8FD50094DAAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9090CCCB1C3E8FD50094DAAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9090CCD11C3E94070094DAAD /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		9090CCD51C3EB12F0094DAAD /* PhotoItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoItem.swift; sourceTree = "<group>"; };
 		9090CCD91C3EC5B50094DAAD /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		9090CCDA1C3ECFE80094DAAD /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +63,6 @@
 				9090CCC11C3E8FD50094DAAD /* PhotoDiaryViewController.swift */,
 				9090CCDA1C3ECFE80094DAAD /* PhotoViewController.swift */,
 				9090CCD11C3E94070094DAAD /* PhotoCell.swift */,
-				9090CCD51C3EB12F0094DAAD /* PhotoItem.swift */,
 				9090CCC31C3E8FD50094DAAD /* Main.storyboard */,
 				9090CCC61C3E8FD50094DAAD /* Assets.xcassets */,
 				9090CCC81C3E8FD50094DAAD /* LaunchScreen.storyboard */,
@@ -148,7 +145,6 @@
 				9090CCC21C3E8FD50094DAAD /* PhotoDiaryViewController.swift in Sources */,
 				9090CCD21C3E94070094DAAD /* PhotoCell.swift in Sources */,
 				9090CCC01C3E8FD50094DAAD /* AppDelegate.swift in Sources */,
-				9090CCD61C3EB1300094DAAD /* PhotoItem.swift in Sources */,
 				9090CCDB1C3ECFE80094DAAD /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
