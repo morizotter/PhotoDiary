@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Photo Diary-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PhotoDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,47 +36,37 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="52M-VY-DVH">
                                                     <rect key="frame" x="1" y="1" width="98" height="98"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HpF-Pk-YfT">
-                                                    <rect key="frame" x="1" y="77" width="98" height="22"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bgu-nw-4EG">
-                                                            <rect key="frame" x="0.0" y="0.0" width="98" height="22"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- - -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="15L-2F-cND">
-                                                            <rect key="frame" x="4" y="5" width="90" height="12"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="15L-2F-cND" firstAttribute="centerY" secondItem="HpF-Pk-YfT" secondAttribute="centerY" id="39Q-0e-KFq"/>
-                                                        <constraint firstItem="15L-2F-cND" firstAttribute="leading" secondItem="HpF-Pk-YfT" secondAttribute="leading" constant="4" id="8gq-6M-CCy"/>
-                                                        <constraint firstItem="Bgu-nw-4EG" firstAttribute="top" secondItem="HpF-Pk-YfT" secondAttribute="top" id="M1c-fv-wNp"/>
-                                                        <constraint firstAttribute="height" constant="22" id="PKI-9M-biS"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Bgu-nw-4EG" secondAttribute="bottom" id="QZa-jt-Unr"/>
-                                                        <constraint firstItem="Bgu-nw-4EG" firstAttribute="leading" secondItem="HpF-Pk-YfT" secondAttribute="leading" id="bSI-ZM-oQR"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Bgu-nw-4EG" secondAttribute="trailing" id="jMr-vI-DFN"/>
-                                                        <constraint firstAttribute="trailing" secondItem="15L-2F-cND" secondAttribute="trailing" constant="4" id="mVp-Sv-bfR"/>
-                                                    </constraints>
-                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="15L-2F-cND">
+                                                    <rect key="frame" x="10" y="10" width="80" height="24"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDj-0C-L2H">
+                                                    <rect key="frame" x="10" y="38" width="80" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="52M-VY-DVH" firstAttribute="top" secondItem="FYX-WU-pee" secondAttribute="top" constant="1" id="3cE-bQ-EbM"/>
+                                            <constraint firstItem="zDj-0C-L2H" firstAttribute="top" secondItem="15L-2F-cND" secondAttribute="bottom" constant="4" id="9Jr-ue-ajb"/>
                                             <constraint firstAttribute="bottom" secondItem="52M-VY-DVH" secondAttribute="bottom" constant="1" id="ASN-fZ-QiV"/>
-                                            <constraint firstItem="HpF-Pk-YfT" firstAttribute="leading" secondItem="FYX-WU-pee" secondAttribute="leading" constant="1" id="TFK-Ic-ArS"/>
+                                            <constraint firstAttribute="trailing" secondItem="zDj-0C-L2H" secondAttribute="trailing" constant="10" id="Ott-cR-M4S"/>
                                             <constraint firstItem="52M-VY-DVH" firstAttribute="leading" secondItem="FYX-WU-pee" secondAttribute="leading" constant="1" id="Xv1-fT-hA9"/>
+                                            <constraint firstItem="zDj-0C-L2H" firstAttribute="leading" secondItem="FYX-WU-pee" secondAttribute="leading" constant="10" id="ZEa-gz-gJ1"/>
                                             <constraint firstAttribute="trailing" secondItem="52M-VY-DVH" secondAttribute="trailing" constant="1" id="aMj-LE-CVo"/>
-                                            <constraint firstAttribute="bottom" secondItem="HpF-Pk-YfT" secondAttribute="bottom" constant="1" id="d0z-Fo-Zxt"/>
-                                            <constraint firstAttribute="trailing" secondItem="HpF-Pk-YfT" secondAttribute="trailing" constant="1" id="xGq-Hw-524"/>
+                                            <constraint firstItem="15L-2F-cND" firstAttribute="leading" secondItem="FYX-WU-pee" secondAttribute="leading" constant="10" id="gci-EL-oVg"/>
+                                            <constraint firstItem="15L-2F-cND" firstAttribute="top" secondItem="FYX-WU-pee" secondAttribute="top" constant="10" id="onx-EW-3ni"/>
+                                            <constraint firstAttribute="trailing" secondItem="15L-2F-cND" secondAttribute="trailing" constant="10" id="u3e-yK-N3e"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="dateLabel" destination="15L-2F-cND" id="0Z5-Pc-0WI"/>
+                                            <outlet property="dayLabel" destination="zDj-0C-L2H" id="CcC-fd-Dnu"/>
                                             <outlet property="photoImageView" destination="52M-VY-DVH" id="00O-w7-lgZ"/>
+                                            <outlet property="yearLabel" destination="15L-2F-cND" id="Otq-CM-eVP"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -127,7 +117,28 @@
                             <constraint firstItem="7zN-Q5-6bG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rWa-EW-9ao"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Photo Diary" id="1HM-Gk-S7G"/>
+                    <navigationItem key="navigationItem" id="1HM-Gk-S7G">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="aMZ-4k-wpQ">
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo Diary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJ3-S8-yIC">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="33"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="textColor" red="0.98823529409999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="gJ3-S8-yIC" secondAttribute="bottom" id="70u-MC-4U6"/>
+                                <constraint firstAttribute="trailing" secondItem="gJ3-S8-yIC" secondAttribute="trailing" id="O05-zg-jnc"/>
+                                <constraint firstItem="gJ3-S8-yIC" firstAttribute="top" secondItem="aMZ-4k-wpQ" secondAttribute="top" id="QwZ-tE-Peu"/>
+                                <constraint firstItem="gJ3-S8-yIC" firstAttribute="leading" secondItem="aMZ-4k-wpQ" secondAttribute="leading" id="sLe-b1-0IP"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="7zN-Q5-6bG" id="kn1-cL-0G5"/>
                         <outlet property="photoButton" destination="5OM-Gk-FKC" id="hxd-Pk-JrS"/>

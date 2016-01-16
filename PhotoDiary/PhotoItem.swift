@@ -10,7 +10,8 @@ import UIKit
 
 struct PhotoItem {
     let id: String
-    let dateString: String
+    let yearString: String
+    let dayString: String
     var image: UIImage?
     
     var imagePath: String {
@@ -21,14 +22,20 @@ struct PhotoItem {
         self.id = NSUUID().UUIDString
         self.image = image
         
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy年M月d日 H:mm:ss"
-        self.dateString = formatter.stringFromDate(NSDate())
+        let now = NSDate()
+        let yearFormatter = NSDateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        self.yearString = yearFormatter.stringFromDate(now)
+        
+        let dayFormatter = NSDateFormatter()
+        dayFormatter.dateFormat = "M/d"
+        self.dayString = dayFormatter.stringFromDate(now)
     }
     
     init(dictionary: [String: AnyObject]) {
         self.id = dictionary["ID"] as! String
-        self.dateString = dictionary["DATE"] as! String
+        self.yearString = dictionary["YEAR"] as! String
+        self.dayString = dictionary["DAY"] as! String
         self.image = UIImage(contentsOfFile: imagePath)
     }
     
@@ -42,7 +49,8 @@ struct PhotoItem {
         
         var dict = [String: AnyObject]()
         dict["ID"] = id
-        dict["DATE"] = dateString
+        dict["YEAR"] = yearString
+        dict["DAY"] = dayString
         return dict
     }
 }

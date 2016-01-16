@@ -25,7 +25,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let item = ItemsManager.sharedInstance.items[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         cell.photoImageView.image = item.image
-        cell.dateLabel.text = item.dateString
+        cell.yearLabel.text = item.yearString
+        cell.dayLabel.text = item.dayString
         return cell
     }
     
