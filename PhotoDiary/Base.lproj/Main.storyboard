@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7zN-Q5-6bG">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="sJ5-LK-PpU">
                                     <size key="itemSize" width="100" height="100"/>
@@ -85,26 +85,46 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="GCx-mn-HyB"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OM-Gk-FKC">
-                                <rect key="frame" x="500" y="500" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5e-RO-tfP">
+                                <rect key="frame" x="0.0" y="498" width="600" height="102"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_bar" translatesAutoresizingMaskIntoConstraints="NO" id="gxS-o1-NIA">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="102"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5OM-Gk-FKC">
+                                        <rect key="frame" x="272" y="29" width="57" height="44"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="57" id="1UG-id-FuD"/>
+                                            <constraint firstAttribute="height" constant="44" id="Y2Q-pD-Y6j"/>
+                                        </constraints>
+                                        <state key="normal" image="camera_button"/>
+                                        <connections>
+                                            <action selector="photoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UK2-XI-qmd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="1UG-id-FuD"/>
-                                    <constraint firstAttribute="height" constant="80" id="Y2Q-pD-Y6j"/>
+                                    <constraint firstAttribute="bottom" secondItem="gxS-o1-NIA" secondAttribute="bottom" id="NgH-eA-dvP"/>
+                                    <constraint firstAttribute="trailing" secondItem="gxS-o1-NIA" secondAttribute="trailing" id="X5x-t7-Rxi"/>
+                                    <constraint firstItem="5OM-Gk-FKC" firstAttribute="centerY" secondItem="x5e-RO-tfP" secondAttribute="centerY" id="XTW-H4-FP2"/>
+                                    <constraint firstItem="gxS-o1-NIA" firstAttribute="leading" secondItem="x5e-RO-tfP" secondAttribute="leading" id="YWe-n9-woP"/>
+                                    <constraint firstItem="5OM-Gk-FKC" firstAttribute="centerX" secondItem="x5e-RO-tfP" secondAttribute="centerX" id="Z7j-Sb-NN6"/>
+                                    <constraint firstItem="gxS-o1-NIA" firstAttribute="top" secondItem="x5e-RO-tfP" secondAttribute="top" id="Zu8-Ww-xDx"/>
+                                    <constraint firstAttribute="height" constant="102" id="z6M-bR-jQB"/>
                                 </constraints>
-                                <connections>
-                                    <action selector="photoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UK2-XI-qmd"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="7zN-Q5-6bG" secondAttribute="trailing" id="Fbk-0s-SlQ"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7zN-Q5-6bG" secondAttribute="bottom" id="ct1-gz-3aO"/>
-                            <constraint firstItem="7zN-Q5-6bG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="o5Q-x4-bqb"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5OM-Gk-FKC" secondAttribute="bottom" constant="20" id="q9t-5s-01d"/>
+                            <constraint firstAttribute="bottom" secondItem="x5e-RO-tfP" secondAttribute="bottom" id="CDu-BQ-Znt"/>
+                            <constraint firstAttribute="right" secondItem="7zN-Q5-6bG" secondAttribute="right" id="Fbk-0s-SlQ"/>
+                            <constraint firstItem="x5e-RO-tfP" firstAttribute="left" secondItem="8bC-Xf-vdC" secondAttribute="left" id="SpX-Sx-UCu"/>
+                            <constraint firstAttribute="right" secondItem="x5e-RO-tfP" secondAttribute="right" id="TyD-RX-mzs"/>
+                            <constraint firstItem="gxS-o1-NIA" firstAttribute="top" secondItem="7zN-Q5-6bG" secondAttribute="bottom" constant="-2" id="XWU-h5-kmm"/>
+                            <constraint firstItem="7zN-Q5-6bG" firstAttribute="left" secondItem="8bC-Xf-vdC" secondAttribute="left" id="o5Q-x4-bqb"/>
                             <constraint firstItem="7zN-Q5-6bG" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="rWa-EW-9ao"/>
-                            <constraint firstAttribute="trailing" secondItem="5OM-Gk-FKC" secondAttribute="trailing" constant="20" id="rjx-UO-Yrl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo Diary" id="1HM-Gk-S7G"/>
@@ -168,4 +188,8 @@
             <point key="canvasLocation" x="246" y="-353"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera_bar" width="375" height="104"/>
+        <image name="camera_button" width="57" height="44"/>
+    </resources>
 </document>

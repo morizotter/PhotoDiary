@@ -15,10 +15,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        photoButton.layer.cornerRadius = photoButton.frame.size.width / 2.0
-        photoButton.layer.borderWidth = 10.0
-        photoButton.layer.borderColor = UIColor(white: 1.0, alpha: 0.5).CGColor
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
