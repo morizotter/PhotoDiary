@@ -13,16 +13,48 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var photoButton: UIButton!
     
+    var items = [PhotoItem]()
+    let dataPath = NSHomeDirectory() + "/Documents/items.data"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadItems()
+        collectionView.reloadData()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "saveItems:", name: UIApplicationWillTerminateNotification, object: nil)
+    }
+    
+    func loadItems() {
+        if let data = NSData(contentsOfFile: dataPath) {
+            if let dicts = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: String]] {
+                var items = [PhotoItem]()
+                for dict in dicts {
+                    let item = PhotoItem(dictionary: dict)
+                    items.append(item)
+                }
+                self.items = items
+            }
+        }
+    }
+    
+    @objc
+    func saveItems(notification: NSNotification) {
+        var dicts = [[String: AnyObject]]()
+        for item in items {
+            dicts.append(item.dictionary())
+        }
+        
+        let archive = NSKeyedArchiver.archivedDataWithRootObject(dicts)
+        archive.writeToFile(dataPath, atomically: true)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ItemsManager.sharedInstance.items.count
+        return items.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let item = ItemsManager.sharedInstance.items[indexPath.row]
+        let item = items[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
         cell.photoImageView.image = item.image
         cell.yearLabel.text = item.yearString
@@ -37,7 +69,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PhotoViewController") as! PhotoViewController
-        vc.item = ItemsManager.sharedInstance.items[indexPath.row]
+        vc.item = items[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -53,10 +85,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             dismissViewControllerAnimated(true) { [weak self] () -> Void in
                 guard let s = self else { return }
                 let photoItem = PhotoItem(image: image)
-                ItemsManager.sharedInstance.items.append(photoItem)
+                s.items.append(photoItem)
                 s.collectionView.reloadData()
             }
         }
     }
 }
-
