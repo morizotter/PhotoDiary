@@ -16,7 +16,9 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = item?.yearString
-        photoImageView.image = item?.image
+        guard let item = item else { return }
+        
+        navigationItem.title = item.yearString + item.dayString
+        photoImageView.image = item.image
     }
 }
