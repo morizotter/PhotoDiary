@@ -20,7 +20,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         
         loadItems()
-        collectionView.reloadData()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "saveItems:", name: UIApplicationWillTerminateNotification, object: nil)
     }
