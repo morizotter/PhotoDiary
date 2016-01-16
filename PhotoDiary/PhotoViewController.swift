@@ -9,7 +9,7 @@
 import UIKit
 
 class PhotoViewController: UIViewController {
-    var item: PhotoItem?
+    var item: [String: AnyObject]?
     
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -18,7 +18,10 @@ class PhotoViewController: UIViewController {
         
         guard let item = item else { return }
         
-        navigationItem.title = item.yearString + item.dayString
-        photoImageView.image = item.image
+        let year = item["YEAR"] as? String ?? ""
+        let day = item["DAY"] as? String ?? ""
+        
+        navigationItem.title = "\(year) \(day)"
+        photoImageView.image = item["IMAGE"] as? UIImage
     }
 }
