@@ -26,16 +26,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func loadItems() {
-        if let data = NSData(contentsOfFile: dataPath) {
-            if let dicts = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: String]] {
-                var items = [PhotoItem]()
-                for dict in dicts {
-                    let item = PhotoItem(dictionary: dict)
-                    items.append(item)
-                }
-                self.items = items
-            }
+        guard let data = NSData(contentsOfFile: dataPath) else { return }
+        guard let dicts = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: String]] else { return }
+        var items = [PhotoItem]()
+        for dict in dicts {
+            let item = PhotoItem(dictionary: dict)
+            items.append(item)
         }
+        self.items = items
     }
     
     @objc
@@ -44,10 +42,19 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         for item in items {
             dicts.append(item.dictionary())
         }
-        
         let archive = NSKeyedArchiver.archivedDataWithRootObject(dicts)
         archive.writeToFile(dataPath, atomically: true)
     }
+    
+    @IBAction func photoButtonTapped(sender: UIButton) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = .Camera
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    // MARK:-
+    // MARK:UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -73,12 +80,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @IBAction func photoButtonTapped(sender: UIButton) {
-        let picker = UIImagePickerController()
-        picker.delegate = self
-        picker.sourceType = .Camera
-        presentViewController(picker, animated: true, completion: nil)
-    }
+    // MARK:-
+    // MARK:UIImagePickerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
