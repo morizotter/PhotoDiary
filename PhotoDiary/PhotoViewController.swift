@@ -20,8 +20,11 @@ class PhotoViewController: UIViewController {
         
         let year = item["YEAR"] as? String ?? ""
         let day = item["DAY"] as? String ?? ""
-        
         navigationItem.title = "\(year) \(day)"
-        photoImageView.image = item["IMAGE"] as? UIImage
+        
+        if let imagePath = item["IMAGE_PATH"] as? String {
+            let image = UIImage(contentsOfFile: imagePath)
+            photoImageView.image = image
+        }
     }
 }
