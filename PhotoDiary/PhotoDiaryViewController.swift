@@ -26,7 +26,10 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func loadItems() {
         guard let data = NSData(contentsOfFile: dataPath) else { return }
-        guard let items = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: AnyObject]] else { return }
+        guard let items = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: AnyObject]] else {
+            return
+        }
+        print(items)
         self.items = items
     }
     
@@ -53,9 +56,13 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
-        cell.photoImageView.image = item["IMAGE"] as? UIImage
         cell.yearLabel.text = item["YEAR"] as? String
         cell.dayLabel.text = item["DAY"] as? String
+        
+        guard let imagePath = item["IMAGE_PATH"] as? String else { return cell }
+        let image = UIImage(contentsOfFile: imagePath)
+        cell.photoImageView.image = image
+        
         return cell
     }
     
@@ -74,26 +81,33 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     // MARK:UIImagePickerDelegate
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            dismissViewControllerAnimated(true) { [weak self] () -> Void in
-                guard let s = self else { return }
-                
-                let now = NSDate()
-                let yearFormatter = NSDateFormatter()
-                yearFormatter.dateFormat = "yyyy"
-                let dayFormatter = NSDateFormatter()
-                dayFormatter.dateFormat = "M/d"
-                
-                let dict: [String: AnyObject] = [
-                    "ID": NSUUID().UUIDString,
-                    "YEAR": yearFormatter.stringFromDate(now),
-                    "DAY": dayFormatter.stringFromDate(now),
-                    "IMAGE": image
-                ]
-                
-                s.items.append(dict)
-                s.collectionView.reloadData()
-            }
-        }
+        
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
+        
+        let uuid = NSUUID().UUIDString
+        let imagePath = NSHomeDirectory() + "/Documents/" + uuid + ".jpg"
+        imageData.writeToFile(imagePath, atomically: true)
+        
+        let now = NSDate()
+        let yearFormatter = NSDateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        let year = yearFormatter.stringFromDate(now)
+        
+        let dayFormatter = NSDateFormatter()
+        dayFormatter.dateFormat = "M/d"
+        let day = dayFormatter.stringFromDate(now)
+        
+        let dict: [String: AnyObject] = [
+            "ID": uuid,
+            "YEAR": year,
+            "DAY": day,
+            "IMAGE_PATH": imagePath
+        ]
+        
+        items.append(dict)
+        collectionView.reloadData()
     }
 }
