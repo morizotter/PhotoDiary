@@ -14,7 +14,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var photoButton: UIButton!
     
     var items = [[String: AnyObject]]()
-    let dataPath = NSHomeDirectory() + "/Documents/items.data"
+    let documentsDir = NSHomeDirectory() + "/Documents"
+    let dataFileName = "items.data"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +25,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "saveItems:", name: UIApplicationWillTerminateNotification, object: nil)
     }
     
+    func dataPath() -> String {
+        return documentsDir + "/" + dataFileName
+    }
+    
+    func photoPath(id: String) -> String {
+        return documentsDir + "/" + id + ".jpg"
+    }
+    
     func loadItems() {
-        guard let data = NSData(contentsOfFile: dataPath) else { return }
+        guard let data = NSData(contentsOfFile: dataPath()) else { return }
         guard let items = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: AnyObject]] else {
             return
         }
-        print(items)
         self.items = items
     }
     
     @objc
     func saveItems(notification: NSNotification) {
         let archive = NSKeyedArchiver.archivedDataWithRootObject(items)
-        archive.writeToFile(dataPath, atomically: true)
+        archive.writeToFile(dataPath(), atomically: true)
     }
     
     @IBAction func photoButtonTapped(sender: UIButton) {
@@ -55,12 +63,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let item = items[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
-        cell.yearLabel.text = item["YEAR"] as? String
-        cell.dayLabel.text = item["DAY"] as? String
+        let id = item["ID"] as? String ?? ""
+        let year = item["YEAR"] as? String
+        let day = item["DAY"] as? String
         
-        guard let imagePath = item["IMAGE_PATH"] as? String else { return cell }
-        let image = UIImage(contentsOfFile: imagePath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("PhotoCell", forIndexPath: indexPath) as! PhotoCell
+        cell.yearLabel.text = year
+        cell.dayLabel.text = day
+        
+        let image = UIImage(contentsOfFile: photoPath(id))
         cell.photoImageView.image = image
         
         return cell
@@ -88,8 +99,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         guard let imageData = UIImageJPEGRepresentation(image, 0.7) else { return }
         
         let uuid = NSUUID().UUIDString
-        let imagePath = NSHomeDirectory() + "/Documents/" + uuid + ".jpg"
-        imageData.writeToFile(imagePath, atomically: true)
+        imageData.writeToFile(photoPath(uuid), atomically: true)
         
         let now = NSDate()
         let yearFormatter = NSDateFormatter()
@@ -104,7 +114,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             "ID": uuid,
             "YEAR": year,
             "DAY": day,
-            "IMAGE_PATH": imagePath
         ]
         
         items.append(dict)

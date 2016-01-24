@@ -10,6 +10,7 @@ import UIKit
 
 class PhotoViewController: UIViewController {
     var item: [String: AnyObject]?
+    let documentsDir = NSHomeDirectory() + "/Documents"
     
     @IBOutlet weak var photoImageView: UIImageView!
     
@@ -18,13 +19,16 @@ class PhotoViewController: UIViewController {
         
         guard let item = item else { return }
         
+        let id = item["ID"] as? String ?? ""
         let year = item["YEAR"] as? String ?? ""
         let day = item["DAY"] as? String ?? ""
         navigationItem.title = "\(year) \(day)"
         
-        if let imagePath = item["IMAGE_PATH"] as? String {
-            let image = UIImage(contentsOfFile: imagePath)
-            photoImageView.image = image
-        }
+        let image = UIImage(contentsOfFile: photoPath(id))
+        photoImageView.image = image
+    }
+    
+    func photoPath(id: String) -> String {
+        return documentsDir + "/" + id + ".jpg"
     }
 }
