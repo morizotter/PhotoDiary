@@ -12,5 +12,5 @@ YouTube動画 [森田先生のiPhone開発教室 全13回](https://www.youtube.c
 
 ## 関連情報
 
-- 開発: [@morizotter](https://twitter.com/morizotter)
+- 出演: [@morizotter](https://twitter.com/morizotter)
 - 撮影・編集: [@imaimiami](https://twitter.com/imaimiami)
